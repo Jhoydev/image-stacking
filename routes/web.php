@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::post('/', 'HomeController@store');
+Route::get('layers/{stack_id}/{filename}', 'HomeController@layerImage');

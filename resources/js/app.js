@@ -11,13 +11,36 @@ const app = new Vue({
     components: {
         stack
     },
-    async mounted(){
+    async mounted() {
         await this.fetchLayers()
+        document.querySelector('#upload').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = new FormData(e.target)
+            this.storeLayer(e.target.action, data)
+        })
     },
     methods: {
-        async fetchLayers (){
-            const response = await axios.get('api/layers');
-            this.variations = response.data;
+        async fetchLayers() {
+            try {
+                const response = await axios.get('api/layers');
+                this.variations = response.data;
+            } catch (e) {
+                console.log(e)
+            }
+        },
+        async storeLayer(url, data) {
+            try {
+                await axios.post(url, data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                $('#addLayerModal').modal('hide')
+                document.querySelector('#upload').reset();
+                await this.fetchLayers()
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 })

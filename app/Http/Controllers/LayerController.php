@@ -14,8 +14,19 @@ class LayerController extends Controller
      */
     public function index()
     {
-        $rows = Layer::variations();
-        return response()->json($rows);
+        switch (Layer::countRowsavailable()){
+            case 0:
+                return response()->json(['error' => 'no images have been uploaded'], 400);
+                break;
+            case 1:
+                return response()->json(['error' => 'requires at least 1 image uploaded in 2 different rows'],400);
+                break;
+            default:
+                $rows = Layer::variations();
+                return response()->json($rows);
+                break;
+
+        }
     }
 
     /**

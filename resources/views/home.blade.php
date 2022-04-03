@@ -1,14 +1,15 @@
 @extends('layouts.app')
 @section('content')
 <div class="col-12">
-    <h3>Variations</h3>
+    <div id="warning-message" class="alert alert-info" role="alert">
+    </div>
 </div>
 <div class="col-12">
     <div class="row container-stacks my-5">
         <stack class="col-4 d-flex justify-content-center align-items-center" style="min-height: 150px" v-for="(layer, index) of variations" :key="index" :images="layer"></stack>
     </div>
 </div>
-<div class="col-12 mt-50">
+<div class="col-12">
     <div class="div d-flex justify-content-around">
         <button class="btn btn-primary" @click="fetchLayers()">Generate</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLayerModal">
@@ -34,7 +35,7 @@
                     <div class="form-group">
                         <label for="layer_id">Array index</label>
                         <select class="form-control" name="layer_id" id="layer_id" required>
-                            <option value="0">0</option>
+                                <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

@@ -21,11 +21,17 @@ const app = new Vue({
     },
     methods: {
         async fetchLayers() {
+            let alert = document.querySelector('#warning-message');
             try {
                 const response = await axios.get('api/layers');
                 this.variations = response.data;
+                alert.classList.add('d-none');
             } catch (e) {
-                console.log(e)
+               if (e.response.status === 400){
+                   let alert = document.querySelector('#warning-message');
+                   alert.classList.remove('d-none');
+                   alert.innerHTML = e.response.data.error;
+               }
             }
         },
         async storeLayer(url, data) {

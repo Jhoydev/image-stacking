@@ -23,7 +23,7 @@ class Layer extends Model
         foreach ($rows as $row) {
             $l[] = $row;
         }
-        return (Layer::countRowsavailable() < 2) ? $l : self::combinate($l);
+        return self::combinate($l);
     }
 
     private static function combinate($layers, $i = 0)
@@ -59,7 +59,7 @@ class Layer extends Model
     public static function storeImagen(StoreLayer $request, Layer $layer){
 
         $image    = $request->file('image');
-        $filename =  $image->getClientOriginalName();
+        $filename = $layer->id . '.' .  $image->getClientOriginalExtension();
         $pathLayer = "stacks/{$request->layer_id}";
         if (!Storage::disk('local')->exists($pathLayer)) {
             Storage::makeDirectory($pathLayer);

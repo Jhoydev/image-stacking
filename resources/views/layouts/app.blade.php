@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body>
+<body class="pt-5">
 <main id="app" class="container">
     <nav class="navbar fixed-top navbar-light bg-light">
         <a class="navbar-brand" href="#">Variations</a>
     </nav>
-    <div class="row">
+    <div class="row pt-5">
         @yield('content')
     </div>
 </main>

@@ -24,3 +24,4 @@ php artisan migrate
 ```
 
 
+![alt text](https://raw.githubusercontent.com/Jhoydev/image-stacking/master/Screenshot.png?raw=true)
